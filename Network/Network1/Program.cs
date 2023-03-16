@@ -1,7 +1,7 @@
 ﻿var client = new HttpClient();
 HttpRequestMessage request;
 var search = "";
-Console.WriteLine("Choose API to use:\n1. Free NBA API\n2. Urban Dictionary API\n3. Currency Exchange: ");
+Console.WriteLine("Choose API to use:\n1. Free NBA API\n2. Urban Dictionary API: ");
 var choice = Console.ReadLine();
 if (choice == "1")
 {
