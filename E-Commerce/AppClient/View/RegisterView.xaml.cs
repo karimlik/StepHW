@@ -1,5 +1,4 @@
 ﻿using AppClient.Services.Classes;
-using AppClient.ViewModels;
 using E_Commerce.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -13,26 +12,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
+using E_Commerce.Data;
 
-namespace AppClient
+namespace AppClient.ViewModels
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RegisterView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RegisterView : Window
     {
-        public MainWindow()
+        public RegisterView()
         {
             InitializeComponent();
-        }
-
-        private void OnRegisterButtonClicked(object sender, RoutedEventArgs e)
-        {
-            var registerWindow = new RegisterView();
-            this.Close();
-            registerWindow.Show();
+            DataContext = new MainWindowViewModel();
         }
 
         private void OnLoginButtonClicked(object sender, RoutedEventArgs e)
@@ -40,6 +34,11 @@ namespace AppClient
             var loginWindow = new LoginView();
             this.Close();
             loginWindow.Show();
+        }
+
+        private void OnRegisterButtonClicked(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }

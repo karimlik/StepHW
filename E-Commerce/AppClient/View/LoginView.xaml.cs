@@ -1,7 +1,4 @@
-﻿using AppClient.Services.Classes;
-using AppClient.ViewModels;
-using E_Commerce.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AppClient
+namespace AppClient.ViewModels
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginView : Window
     {
-        public MainWindow()
+        public LoginView()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
 
         private void OnRegisterButtonClicked(object sender, RoutedEventArgs e)
@@ -34,13 +31,5 @@ namespace AppClient
             this.Close();
             registerWindow.Show();
         }
-
-        private void OnLoginButtonClicked(object sender, RoutedEventArgs e)
-        {
-            var loginWindow = new LoginView();
-            this.Close();
-            loginWindow.Show();
-        }
-
     }
 }
