@@ -32,7 +32,7 @@
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Email}" Margin="10" />
 
         <Label Grid.Row="2" Content="Password:" Margin="10" />
-        <components:BindablePasswordBox x:Name="loginPasswordBox" Grid.Row="2" Grid.Column="1" Margin="10" />
+        <components:BindablePasswordBox x:Name="loginPasswordBox" Password="{Binding Password}" Grid.Row="2" Grid.Column="1" Margin="10" />
 
         <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Login" Command="{Binding LoginCommand}" Margin="10" />
 

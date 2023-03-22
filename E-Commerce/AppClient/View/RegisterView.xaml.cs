@@ -36,10 +36,6 @@ namespace AppClient.ViewModels
             loginWindow.Show();
         }
 
-        private void OnRegisterButtonClicked(object sender, RoutedEventArgs e)
-        {
-
-        }
 
     }
 }
