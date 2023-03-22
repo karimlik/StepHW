@@ -28,5 +28,15 @@ namespace AppClient.Services.Classes
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
         }
+
+        public bool CheckExists(string email, string password)
+        {
+            var user = _dbContext.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            if (user != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

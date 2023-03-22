@@ -37,8 +37,8 @@
         <Label Grid.Row="3" Content="Password:" Margin="10" />
         <components:BindablePasswordBox Password="{Binding Password}" Grid.Row="3" Grid.Column="1" Margin="10" />
         
-        <!--<Label Grid.Row="4" Content="Confirm Password:" Margin="10" />
-        <components:BindablePasswordBox Grid.Row="4" Grid.Column="1" Margin="10" />-->
+        <Label Grid.Row="4" Content="Confirm Password:" Margin="10" />
+        <components:BindablePasswordBox Password="{Binding PasswordConfirm}" Grid.Row="4" Grid.Column="1" Margin="10" />
 
         <Label Grid.Row="5" Content="Phone:" Margin="10" />
         <TextBox x:Name="PhoneTextBox" Grid.Row="5" Grid.Column="1" Text="{Binding PhoneNumber}" Margin="10" />

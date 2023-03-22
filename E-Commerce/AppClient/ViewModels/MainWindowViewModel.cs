@@ -24,8 +24,8 @@ namespace AppClient.ViewModels
         public MainWindowViewModel()
         {
             _userService = new UserService();
-            LoginCommand = new RelayCommand(Login, CanLogin);
-            RegisterCommand = new RelayCommand(Register, true);
+            LoginCommand = new RelayCommand(Login);
+            RegisterCommand = new RelayCommand(Register);
         }
 
         private string _name;
@@ -50,6 +50,17 @@ namespace AppClient.ViewModels
             }
         }
 
+        private string _phonenumber;
+        public string PhoneNumber
+        {
+            get { return _phonenumber; }
+            set
+            {
+                _phonenumber = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _password;
         public string Password
         {
@@ -61,18 +72,29 @@ namespace AppClient.ViewModels
             }
         }
 
-        public ICommand LoginCommand { get; }
-        public ICommand RegisterCommand { get; }
+        private string _passwordConfirm;
+        public string PasswordConfirm
+        {
+            get { return _passwordConfirm; }
+            set
+            {
+                _passwordConfirm = value;
+                OnPropertyChanged(nameof(PasswordConfirm));
+            }
+        }
 
         private bool CanLogin()
         {
-            return string.IsNullOrWhiteSpace(Email) && string.IsNullOrWhiteSpace(Password);
+            return !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password);
         }
 
         private bool CanRegister()
         {
-            return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password);
+            return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password);
         }
+
+        public ICommand LoginCommand { get; }
+        public ICommand RegisterCommand { get; }
 
         private void Login()
         {
@@ -90,15 +112,25 @@ namespace AppClient.ViewModels
 
         private void Register()
         {
-            User user = new User
+            
+            if (!_userService.CheckExists(_email, EncryptPassword(Password)))
             {
-                Name = Name,
-                Email = Email,
-                Password = EncryptPassword(Password)
-            };
+                User user = new User
+                {
+                    Name = Name,
+                    Email = Email,
+                    PhoneNumber = PhoneNumber,
+                    Password = EncryptPassword(Password)
+                };
 
-            _userService.Register(user);
-            MessageBox.Show("Registration successful!");
+                _userService.Register(user);
+                MessageBox.Show("Registration successful!");
+            }
+            else
+            {
+                MessageBox.Show("Error!");
+                return;
+            }
         }
 
         private string EncryptPassword(string password)
