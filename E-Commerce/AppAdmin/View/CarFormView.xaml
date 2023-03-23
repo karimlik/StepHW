@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppAdmin.View"
         mc:Ignorable="d"
-        Title="CarFormView" Height="650" Width="500">
+        Title="CarFormView" Height="650" Width="500"
+        DataContext="{Binding RelativeSource={RelativeSource Self}, Path=ViewModel}">
+    
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -53,6 +56,9 @@
 
         <Label Grid.Row="9" Content="UserId:" Margin="10" />
         <TextBox x:Name="UserIdTextBox" Grid.Row="9" Grid.Column="1" Text="{Binding UserId}" Margin="10" />
+
+        
+        <Button Content="Save and Close" Grid.Column="1" Grid.Row="10" Margin="25" Padding="10" Click="OnCloseButtonClicked"></Button>
 
     </Grid>
 </Window>

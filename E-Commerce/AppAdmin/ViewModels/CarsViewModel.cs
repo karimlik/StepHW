@@ -10,9 +10,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using AppClient.Services;
 using AppClient.Components;
+using AppAdmin.View;
+using AppAdmin.ViewModels;
 using E_Commerce.Data;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using AppAdmin.Services.Interfaces;
 
 namespace AppAdmin.ViewModels
 {
@@ -21,12 +24,16 @@ namespace AppAdmin.ViewModels
     public class CarsViewModel : ViewModelBase
     {
         private readonly DataDbContext _context;
+        private readonly IDataService _dataService;
         private readonly ObservableCollection<Car> _cars;
 
         public CarsViewModel()
         {
             _context = new DataDbContext();
             _cars = new ObservableCollection<Car>(_context.Cars.ToList());
+            AddCommand = new RelayCommand(AddCar);
+            EditCommand = new RelayCommand(EditCar);
+            DeleteCommand = new RelayCommand(DeleteCar);
         }
 
         public ObservableCollection<Car> Cars
@@ -49,15 +56,14 @@ namespace AppAdmin.ViewModels
             }
         }
 
-        public RelayCommand AddCarCommand { get; set; }
-        public RelayCommand EditCarCommand { get; set; }
-        public RelayCommand DeleteCarCommand { get; set; }
+        public RelayCommand AddCommand { get; set; }
+        public RelayCommand EditCommand { get; set; }
+        public RelayCommand DeleteCommand { get; set; }
 
         private void AddCar()
         {
             Car car = new Car();
-            var viewModel = new CarFormViewModel(_context, car);
-            var window = new CarFormView { DataContext = viewModel };
+            CarFormView window = new CarFormView(_dataService, car);
 
             bool? result = window.ShowDialog();
 
@@ -73,8 +79,7 @@ namespace AppAdmin.ViewModels
         {
             if (SelectedCar != null)
             {
-                var viewModel = new CarFormViewModel(_context, SelectedCar);
-                var window = new CarFormView { DataContext = viewModel };
+                CarFormView window = new CarFormView(_dataService, SelectedCar);
 
                 bool? result = window.ShowDialog();
 

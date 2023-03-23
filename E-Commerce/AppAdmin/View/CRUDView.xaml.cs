@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AppAdmin.ViewModels;
 
 namespace AppAdmin.View
 {
@@ -22,6 +23,7 @@ namespace AppAdmin.View
         public CRUDView()
         {
             InitializeComponent();
+            DataContext = new CarsViewModel();
         }
     }
 }
