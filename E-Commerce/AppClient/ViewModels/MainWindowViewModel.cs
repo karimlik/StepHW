@@ -103,6 +103,7 @@ namespace AppClient.ViewModels
             if (user != null)
             {
                 MessageBox.Show($"Welcome, {user.Name}!");
+                new CarInventoryView().Show();
             }
             else
             {
@@ -124,7 +125,7 @@ namespace AppClient.ViewModels
                 };
 
                 _userService.Register(user);
-                MessageBox.Show("Registration successful!");
+                MessageBox.Show("Registration successful! Proceed to Log In!");
             }
             else
             {

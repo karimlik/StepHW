@@ -53,5 +53,4 @@ namespace AppAdmin.Services.Classes
             await _context.SaveChangesAsync();
         }
     }
-
 }
