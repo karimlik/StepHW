@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Security.Cryptography;
 using AppClient.Services.Classes;
 using E_Commerce.Data.Models;
+using AppAdmin.View;
 
 namespace AppAdmin.ViewModels
 {
@@ -57,6 +58,7 @@ namespace AppAdmin.ViewModels
             if (user != null && user.IsAdmin == true && user.AdminLevel != 0)
             {
                 MessageBox.Show($"Welcome, {user.Name}!");
+                new CRUDView().Show();
             }
             else
             {
