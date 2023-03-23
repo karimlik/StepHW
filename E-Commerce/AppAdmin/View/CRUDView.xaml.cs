@@ -25,5 +25,14 @@ namespace AppAdmin.View
             InitializeComponent();
             DataContext = new CarsViewModel();
         }
+
+        private void OnAddButtonClicked(object sender, RoutedEventArgs e)
+        {
+            CarFormView window = new CarFormView();
+
+            bool? result = window.ShowDialog();
+
+            Close();
+        }
     }
 }

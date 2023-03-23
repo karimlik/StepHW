@@ -19,9 +19,10 @@
         <!-- Header -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
             <TextBlock Text="Cars" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10,0,10,0"/>
-            <Button Content="Add" Margin="10, 0" Padding="5" Command="{Binding AddCommand}"/>
+            <Button Content="Add" Margin="10, 0" Padding="5" Click="OnAddButtonClicked"/>
             <Button Content="Edit" Margin="10, 0" Padding="5" Command="{Binding EditCommand}" IsEnabled="{Binding IsItemSelected}"/>
             <Button Content="Delete" Margin="10, 0" Padding="5" Command="{Binding DeleteCommand}" IsEnabled="{Binding IsItemSelected}"/>
+            <Button Content="Update" Margin="10, 0" Padding="5" Command="{Binding UpdateCommand}"/>
         </StackPanel>
 
         <!-- Search Bar -->

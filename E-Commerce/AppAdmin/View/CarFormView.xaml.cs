@@ -54,6 +54,7 @@ namespace AppAdmin.View
             _context.SaveChanges();
 
             this.Close();
+            new CRUDView().Show();
         }
     }
 }

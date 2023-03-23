@@ -24,7 +24,7 @@ namespace AppAdmin.ViewModels
     {
         private readonly DataDbContext _context;
         private readonly IDataService _dataService;
-        private readonly ObservableCollection<Car> _cars;
+        private ObservableCollection<Car> _cars;
 
         public CarsViewModel()
         {
@@ -33,6 +33,7 @@ namespace AppAdmin.ViewModels
             AddCommand = new RelayCommand(AddCar);
             EditCommand = new RelayCommand(EditCar);
             DeleteCommand = new RelayCommand(DeleteCar);
+            UpdateCommand = new RelayCommand(UpdateList);
         }
 
         public ObservableCollection<Car> Cars
@@ -58,6 +59,7 @@ namespace AppAdmin.ViewModels
         public RelayCommand AddCommand { get; set; }
         public RelayCommand EditCommand { get; set; }
         public RelayCommand DeleteCommand { get; set; }
+        public RelayCommand UpdateCommand { get; set; }
 
         private void AddCar()
         {
@@ -66,12 +68,7 @@ namespace AppAdmin.ViewModels
 
             bool? result = window.ShowDialog();
 
-            /*if (result == true)
-            {
-                _context.Cars.Add(car);
-                _context.SaveChanges();
-                _cars.Add(car);
-            }*/
+            _cars.Add(car);
         }
 
         private void EditCar()
@@ -105,6 +102,11 @@ namespace AppAdmin.ViewModels
                     _cars.Remove(SelectedCar);
                 }
             }
+        }
+
+        private void UpdateList()
+        {
+            _cars = new ObservableCollection<Car>(_context.Cars.ToList());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
