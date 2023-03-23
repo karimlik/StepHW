@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppAdmin.View"
         mc:Ignorable="d"
-        Title="CarFormView" Height="650" Width="500"
-        DataContext="{Binding RelativeSource={RelativeSource Self}, Path=ViewModel}">
+        Title="CarFormView" Height="650" Width="500">
     
     <Grid>
         <Grid.RowDefinitions>

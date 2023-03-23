@@ -19,7 +19,6 @@ using AppAdmin.Services.Interfaces;
 
 namespace AppAdmin.ViewModels
 {
-    // ...
 
     public class CarsViewModel : ViewModelBase
     {
@@ -63,30 +62,30 @@ namespace AppAdmin.ViewModels
         private void AddCar()
         {
             Car car = new Car();
-            CarFormView window = new CarFormView(_dataService, car);
+            CarFormView window = new CarFormView();
 
             bool? result = window.ShowDialog();
 
-            if (result == true)
+            /*if (result == true)
             {
                 _context.Cars.Add(car);
                 _context.SaveChanges();
                 _cars.Add(car);
-            }
+            }*/
         }
 
         private void EditCar()
         {
             if (SelectedCar != null)
             {
-                CarFormView window = new CarFormView(_dataService, SelectedCar);
+                CarFormView window = new CarFormView();
 
                 bool? result = window.ShowDialog();
 
-                if (result == true)
+                /*if (result == true)
                 {
                     _context.SaveChanges();
-                }
+                }*/
             }
         }
 
