@@ -16,8 +16,6 @@ namespace E_Commerce.Data.Models
         public int Mileage { get; set; }
         public decimal Price { get; set; }
         public string imgUrl { get; set; } = string.Empty;
-        public string SellerName { get; set; } = string.Empty;
-        public string SellerPhone { get; set; } = string.Empty;
         public User User { get; set; } = null!;
 
     }

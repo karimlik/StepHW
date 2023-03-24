@@ -32,15 +32,6 @@ namespace E_Commerce.Data
             {
                 entity.HasKey(x => x.Id);
 
-                entity.Property(x => x.SellerName)
-                .IsRequired()
-                .HasMaxLength(50)
-                .HasColumnName("Seller Name");
-
-                entity.Property(x => x.SellerPhone)
-                .IsRequired()
-                .HasColumnName("Seller Phone");
-
                 entity.Property(x => x.imgUrl)
                 .IsRequired()
                 .HasColumnName("Img Url");

@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AppAdmin.View"
+        xmlns:local="clr-namespace:AppAdmin.View" xmlns:vm="clr-namespace:AppAdmin.ViewModels"
+        xmlns:datacontext="clr-namespace:AppAdmin.ViewModels"
         mc:Ignorable="d"
         Title="CarFormView" Height="650" Width="500">
 
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -18,46 +19,26 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Car Add View" FontSize="20" FontWeight="Bold" Margin="10" />
-
-        <Label Grid.Row="1" Content="Make:" Margin="10" />
-        <TextBox x:Name="MakeTextBox" Grid.Row="1" Grid.Column="1" Text="{Binding Make}" Margin="10" />
-
-        <Label Grid.Row="2" Content="Model:" Margin="10" />
-        <TextBox x:Name="ModelTextBox" Grid.Row="2" Grid.Column="1" Text="{Binding Model}" Margin="10" />
-
-        <Label Grid.Row="3" Content="Year:" Margin="10" />
-        <TextBox x:Name="YearTextBox" Grid.Row="3" Grid.Column="1" Text="{Binding Year}" Margin="10" />
-
-        <Label Grid.Row="4" Content="Mileage:" Margin="10" />
-        <TextBox x:Name="MileageTextBox" Grid.Row="4" Grid.Column="1" Text="{Binding Mileage}" Margin="10" />
-
-        <Label Grid.Row="5" Content="Price:" Margin="10" />
-        <TextBox x:Name="PriceTextBox" Grid.Row="5" Grid.Column="1" Text="{Binding Price}" Margin="10" />
-
-        <Label Grid.Row="6" Content="ImgUrl:" Margin="10" />
-        <TextBox x:Name="ImgTextBox" Grid.Row="6" Grid.Column="1" Text="{Binding ImgUrl}" Margin="10" />
-
-        <Label Grid.Row="7" Content="User Name:" Margin="10" />
-        <TextBox x:Name="UserNameTextBox" Grid.Row="7" Grid.Column="1" Text="{Binding UserName}" Margin="10" />
-
-        <Label Grid.Row="8" Content="User Phone:" Margin="10" />
-        <TextBox x:Name="PhoneTextBox" Grid.Row="8" Grid.Column="1" Text="{Binding UserPhone}" Margin="10" />
-
-        <Label Grid.Row="9" Content="UserId:" Margin="10" />
-        <TextBox x:Name="UserIdTextBox" Grid.Row="9" Grid.Column="1" Text="{Binding UserId}" Margin="10" />
-
-
-        <Button Content="Save and Close" Grid.Column="1" Grid.Row="10" Margin="25" Padding="10" Click="OnCloseButtonClicked"></Button>
-
+        <Label Grid.Row="0" Grid.Column="0" Content="Make:"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding Car.Make, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Model:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Car.Model, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Year:"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding Car.Year, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Price:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding Car.Price, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Mileage:"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding Car.Mileage, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Image URL:"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="5" Text="{Binding Car.imgUrl, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="6" Grid.Column="0" Content="User Email:"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Margin="5" Text="{Binding UserEmail, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Row="7" Grid.Column="1" Margin="5" Content="Save" Command="{Binding SaveCommand}"/>
     </Grid>
 </Window>

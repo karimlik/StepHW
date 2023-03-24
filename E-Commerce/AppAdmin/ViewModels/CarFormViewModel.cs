@@ -19,127 +19,78 @@ using System.Windows.Input;
 using AppAdmin.Services.Interfaces;
 using AppAdmin.Services.Classes;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.EntityFrameworkCore;
+using Intuit.Ipp.Data;
+using User = E_Commerce.Data.Models.User;
 
 namespace AppAdmin.ViewModels
 {
-    public class CarFormViewModel : ViewModelBase
+    public class CarFormViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private readonly DataDbContext _context;
         private readonly IDataService _dataService;
-        private readonly bool _isNewCar;
-        private int _carId;
-        private string _carMake;
-        private string _carModel;
-        private int _carYear;
-        private decimal _carPrice;
-        private string _carImgUrl;
+
+        private Car _car;
+        public Car Car
+        {
+            get { return _car; }
+            set
+            {
+                _car = value;
+                OnPropertyChanged(nameof(Car));
+            }
+        }
+
+        private User Users { get; set; }
+
+        public ICommand SaveCommand { get; }
 
         public CarFormViewModel(IDataService dataService, Car car = null)
         {
-            _dataService = dataService;
+            _dataService = dataService ?? throw new ArgumentNullException(nameof(dataService));
+            _car = car ?? new Car();
+            _context = new DataDbContext();
+            SaveCommand = new RelayCommand(SaveCarAsync);
+        }
 
-            if (car == null)
+        private async void SaveCarAsync()
+        {
+            if (_car.Id == 0)
             {
-                _isNewCar = true;
-                Title = "Add New Car";
-                CarImgUrl = "default.jpg"; // Set a default image
+                _car.User = _context.Users.FirstOrDefault(u => u.Email == _userEmail);
+                await _dataService.AddCarAsync(_car);
             }
             else
             {
-                _isNewCar = false;
-                Title = "Edit Car";
-                CarId = car.Id;
-                CarMake = car.Make;
-                CarModel = car.Model;
-                CarYear = car.Year;
-                CarPrice = car.Price;
-                CarImgUrl = car.imgUrl;
+                await _dataService.UpdateCarAsync(_car);
             }
+            MessageBox.Show("Close this window to see changes!");
         }
 
-        public int CarId
+        public bool IsSaved()
         {
-            get { return _carId; }
-            set { SetProperty(ref _carId, value); }
-        }
-
-        public string CarMake
-        {
-            get { return _carMake; }
-            set { SetProperty(ref _carMake, value); }
-        }
-
-        public string CarModel
-        {
-            get { return _carModel; }
-            set { SetProperty(ref _carModel, value); }
-        }
-
-        public int CarYear
-        {
-            get { return _carYear; }
-            set { SetProperty(ref _carYear, value); }
-        }
-
-        public decimal CarPrice
-        {
-            get { return _carPrice; }
-            set { SetProperty(ref _carPrice, value); }
-        }
-
-        public string CarImgUrl
-        {
-            get { return _carImgUrl; }
-            set { SetProperty(ref _carImgUrl, value); }
-        }
-
-        public string Title { get; }
-
-        public RelayCommand SaveCarCommand { get; private set; }
-
-        private async void SaveCar()
-        {
-            var car = new Car
+            if (_car == null || _car.Id == 0)
             {
-                Id = CarId,
-                Make = CarMake,
-                Model = CarModel,
-                Year = CarYear,
-                Price = CarPrice,
-                imgUrl = CarImgUrl
-            };
-
-            if (_isNewCar)
-            {
-                await _dataService.AddCarAsync(car);
+                return false;
             }
-            else
-            {
-                await _dataService.UpdateCarAsync(car);
-            }
-
-            MessengerInstance.Send(new NotificationMessage("Car saved."));
-        }
-
-        public void Initialize()
-        {
-            SaveCarCommand = new RelayCommand(SaveCar);
-        }
-
-        protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = "")
-        {
-            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-
-            field = value;
-            OnPropertyChanged(propertyName);
-
             return true;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        private string _userEmail;
+        public string UserEmail
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            get { return _userEmail; }
+            set
+            {
+                _userEmail = value;
+                OnPropertyChanged(nameof(_userEmail));
+            }
+
+        }
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

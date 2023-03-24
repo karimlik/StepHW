@@ -103,7 +103,6 @@ namespace AppClient.ViewModels
             if (user != null)
             {
                 MessageBox.Show($"Welcome, {user.Name}!");
-                new CarInventoryView().Show();
             }
             else
             {

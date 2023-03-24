@@ -19,7 +19,7 @@
         <!-- Header -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
             <TextBlock Text="Cars" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10,0,10,0"/>
-            <Button Content="Add" Margin="10, 0" Padding="5" Click="OnAddButtonClicked"/>
+            <Button Content="Add" Margin="10, 0" Padding="5" Command="{Binding AddCommand}"/>
             <Button Content="Edit" Margin="10, 0" Padding="5" Command="{Binding EditCommand}" IsEnabled="{Binding IsItemSelected}"/>
             <Button Content="Delete" Margin="10, 0" Padding="5" Command="{Binding DeleteCommand}" IsEnabled="{Binding IsItemSelected}"/>
             <Button Content="Update" Margin="10, 0" Padding="5" Command="{Binding UpdateCommand}"/>
@@ -41,6 +41,10 @@
                 <DataGridTextColumn Header="Model" Binding="{Binding Model}"/>
                 <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="User Email" Binding="{Binding User.Email}"/>
+                <DataGridTextColumn Header="Seller Name" Binding="{Binding User.Name}" Width="100"/>
+                <DataGridTextColumn Header="Seller Phone" Binding="{Binding User.PhoneNumber}"/>
+                <DataGridTextColumn Header="isActive" Binding="{Binding User.IsActive}" Width="50"/>
                 <DataGridTextColumn Header="Image Source" Binding="{Binding ImgSrc}"/>
             </DataGrid.Columns>
         </DataGrid>
