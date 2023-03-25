@@ -103,7 +103,7 @@ namespace AppClient.ViewModels
 
             if (user != null)
             {
-                MessageBox.Show($"Welcome, {user.Name}!");
+                //MessageBox.Show($"Welcome, {user.Name}!");
                 var window = new CarListView();
                 window.Show();
             }
