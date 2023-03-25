@@ -32,12 +32,11 @@ namespace AppClient.ViewModels
         public async Task LoadCarsAsync()
         {
             var cars = await _dataService.GetAllCarsAsync();
-            
+
             Cars.Clear();
             foreach (var car in cars)
             {
-                var carListItem = new CarListItem();
-                Cars.Add(carListItem.SetCar(car));
+                Cars.Add(new CarListItemViewModel(car));
             }
         }
     }
