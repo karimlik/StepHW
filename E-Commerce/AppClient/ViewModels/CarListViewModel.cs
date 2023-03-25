@@ -1,13 +1,11 @@
-﻿using E_Commerce.Data.Models;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using AppClient.Services.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using E_Commerce.Data.Models;
+using AppClient.Services;
+using AppClient.Components;
+using AppClient.Services.Interfaces;
 
 namespace AppClient.ViewModels
 {
@@ -15,18 +13,32 @@ namespace AppClient.ViewModels
     {
         private readonly IDataService _dataService;
 
-        public ObservableCollection<Car> Cars { get; set; }
-
         public CarListViewModel(IDataService dataService)
         {
             _dataService = dataService;
-            LoadCars();
+            Cars = new ObservableCollection<CarListItemViewModel>();
+            LoadCarsCommand = new RelayCommand(async () => await LoadCarsAsync());
         }
 
-        private async void LoadCars()
+        private ObservableCollection<CarListItemViewModel> _cars;
+        public ObservableCollection<CarListItemViewModel> Cars
         {
-            Cars = new ObservableCollection<Car>(await _dataService.GetAllCarsAsync());
+            get { return _cars; }
+            set { Set(ref _cars, value); }
+        }
+
+        public RelayCommand LoadCarsCommand { get; }
+
+        public async Task LoadCarsAsync()
+        {
+            var cars = await _dataService.GetAllCarsAsync();
+            
+            Cars.Clear();
+            foreach (var car in cars)
+            {
+                var carListItem = new CarListItem();
+                Cars.Add(carListItem.SetCar(car));
+            }
         }
     }
-
 }

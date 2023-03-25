@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Security;
+using AppClient.View;
 
 namespace AppClient.ViewModels
 {
@@ -103,6 +104,8 @@ namespace AppClient.ViewModels
             if (user != null)
             {
                 MessageBox.Show($"Welcome, {user.Name}!");
+                var window = new CarListView();
+                window.Show();
             }
             else
             {
