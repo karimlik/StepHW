@@ -4,6 +4,7 @@ namespace AppClient.ViewModels
 {
     public class CarListItemViewModel
     {
+
         public Car Car { get; set; }
 
         public string Make => "BMW";

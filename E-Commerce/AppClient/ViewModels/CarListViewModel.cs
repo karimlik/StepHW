@@ -36,7 +36,9 @@ namespace AppClient.ViewModels
             Cars.Clear();
             foreach (var car in cars)
             {
-                Cars.Add(new CarListItemViewModel(car));
+                var _window = new CarListItem();
+                var _viewModel = _window.SetCar(car);
+                Cars.Add(_viewModel);
             }
         }
     }
