@@ -5,25 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Barxatnie Tyagi" Height="500" Width="800"
+        Background="#EFEFF4">
 
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="15 8"/>
+            <Setter Property="FontFamily" Value="Helvetica Neue"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderThickness="0" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter x:Name="contentPresenter" 
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              Content="{TemplateBinding Content}" 
+                                              HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center" 
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#333333"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#4F4F4F"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="Margin" Value="0 20"/>
+            <Setter Property="Foreground" Value="#1E1E1E"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="LoginButton" Click="OnLoginButtonClicked" Content="Log In" Grid.Row="1" Grid.Column="1"></Button>
+        <TextBlock Text="Welcome to Barxatnie Tyagi" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Button x:Name="RegisterButton" Click="OnRegisterButtonClicked" Content="Register" Grid.Row="3" Grid.Column="1"></Button>
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+            <Button x:Name="LoginButton" Content="Log In" Click="OnLoginButtonClicked"></Button>
+            <Button x:Name="RegisterButton" Content="Register" Click="OnRegisterButtonClicked"></Button>
+        </StackPanel>
+
+        <Image Source="https://www.freepnglogos.com/uploads/mercedes-logo-png/mercedes-logo-world-car-mercedes-benz-class-cdi-1.png" Height="120" Width="120" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

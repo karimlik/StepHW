@@ -23,7 +23,7 @@ namespace AppAdmin.View
         public CRUDView()
         {
             InitializeComponent();
-            DataContext = new CarsViewModel();
+            //DataContext = new CarsViewModel();
         }
     }
 }

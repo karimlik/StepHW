@@ -45,7 +45,7 @@
                 <DataGridTextColumn Header="Seller Name" Binding="{Binding User.Name}" Width="100"/>
                 <DataGridTextColumn Header="Seller Phone" Binding="{Binding User.PhoneNumber}"/>
                 <DataGridTextColumn Header="isActive" Binding="{Binding User.IsActive}" Width="50"/>
-                <DataGridTextColumn Header="Image Source" Binding="{Binding ImgSrc}"/>
+                <DataGridTextColumn Header="Image Source" Binding="{Binding imgUrl}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

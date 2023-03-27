@@ -9,6 +9,7 @@ using AppClient.Services.Interfaces;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using AppClient.View;
 
 namespace AppClient.ViewModels
 {

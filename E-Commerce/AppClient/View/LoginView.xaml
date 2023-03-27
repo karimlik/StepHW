@@ -8,13 +8,9 @@
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
         xmlns:viewmodels="clr-namespace:AppClient.ViewModels"
         mc:Ignorable="d"
-        Title="LoginView" Height="450" Width="800">
+        Title="LoginView" Height="650" Width="800" Background="#F5F5F5">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -26,16 +22,41 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Login" FontSize="20" FontWeight="Bold" Margin="10" />
+        <Border Grid.Row="0" Height="50"/>
 
-        <Label Grid.Row="1" Content="Email:" Margin="10" />
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Email}" Margin="10" />
+        <Border Grid.Row="1" Grid.ColumnSpan="2" Background="White" CornerRadius="5" Margin="40,0,40,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-        <Label Grid.Row="2" Content="Password:" Margin="10" />
-        <components:BindablePasswordBox x:Name="loginPasswordBox" Password="{Binding Password}" Grid.Row="2" Grid.Column="1" Margin="10" />
+                <Label Grid.Row="0" Content="Log In" FontSize="30" FontWeight="Bold" Margin="30,30,0,0"/>
 
-        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Login" Command="{Binding LoginCommand}" Margin="10" />
+                <StackPanel Grid.Row="1" Margin="30">
+                    <Label Content="Email" FontWeight="Bold" FontSize="18" />
+                    <TextBox Text="{Binding Email}" Foreground="#1e1e1e"
+                     Background="#EEE"
+                     BorderBrush="Transparent"
+                     BorderThickness="0"
+                     Margin="10"
+                             Padding="10"
+                     FontSize="16"
+                     FontFamily="Segoe UI"
+                     CaretBrush="#1e1e1e"
+                     SelectionBrush="#1e1e1e"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"/>
 
-        <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Register" Click="OnRegisterButtonClicked" Margin="10" />
+                    <Label Content="Password" FontWeight="Bold" FontSize="18" Margin="0,20,0,0" />
+                    <components:BindablePasswordBox x:Name="loginPasswordBox" Password="{Binding Password}" Margin="10" />
+
+                    <Button Content="Log In" Command="{Binding LoginCommand}" Margin="0,20,0,0" Width="200" Height="50" Background="#333333" Foreground="White" FontWeight="Bold" FontSize="18"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Label Grid.Row="2" Content="Don't have an account yet?" FontWeight="Bold" FontSize="18" Margin="70,20,0,0"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Sign Up Now" Click="OnRegisterButtonClicked" Width="200" Height="50" Background="#333333" Foreground="White" FontWeight="Bold" FontSize="18" Margin="0,10,0,0"/>
     </Grid>
 </Window>

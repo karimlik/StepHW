@@ -86,19 +86,23 @@ namespace AppClient.Services.Classes
             }
         }
 
-        public async Task<List<Car>> SearchCarsAsync(string search)
+        public async Task<List<Car>> SearchCarsAsync(string searchText)
         {
-            return await Task.Run(() =>
+            if (string.IsNullOrEmpty(searchText))
             {
-                var allCars = GetAllCarsAsync().Result;
-                return allCars.Where(c =>
-                    c.Make.Contains(search, StringComparison.OrdinalIgnoreCase) ||
-                    c.Model.Contains(search, StringComparison.OrdinalIgnoreCase) ||
-                    c.Year.ToString().Contains(search, StringComparison.OrdinalIgnoreCase) ||
-                    c.Price.ToString().Contains(search, StringComparison.OrdinalIgnoreCase)
-                ).ToList();
-            });
-        }
+                return await GetAllCarsAsync();
+            }
 
+            var cars = await _dbContext.Cars
+                .Include(u => u.User)
+                .Where(c => c.Make.Contains(searchText) ||
+                            c.Model.Contains(searchText) ||
+                            c.Year.ToString().Contains(searchText) ||
+                            c.User.Name.Contains(searchText) ||
+                            c.User.Email.Contains(searchText))
+                .ToListAsync();
+
+            return cars ?? new List<Car>();
+        }
     }
 }

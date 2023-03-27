@@ -25,8 +25,8 @@ namespace AppClient.ViewModels
         public MainWindowViewModel()
         {
             _userService = new UserService();
-            LoginCommand = new RelayCommand(Login);
-            RegisterCommand = new RelayCommand(Register);
+            LoginCommand = new RelayCommand(Login, CanLogin);
+            RegisterCommand = new RelayCommand(Register, CanRegister);
         }
 
         private string _name;
@@ -48,6 +48,7 @@ namespace AppClient.ViewModels
             {
                 _email = value;
                 OnPropertyChanged();
+                LoginCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -70,6 +71,7 @@ namespace AppClient.ViewModels
             {
                 _password = value;
                 OnPropertyChanged(nameof(Password));
+                LoginCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -94,8 +96,8 @@ namespace AppClient.ViewModels
             return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password);
         }
 
-        public ICommand LoginCommand { get; }
-        public ICommand RegisterCommand { get; }
+        public RelayCommand LoginCommand { get; }
+        public RelayCommand RegisterCommand { get; }
 
         private void Login()
         {

@@ -28,4 +28,10 @@
     <ProjectReference Include="..\E-Commerce\E-Commerce.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="View\CarFormView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
