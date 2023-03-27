@@ -20,6 +20,7 @@ namespace AppClient.Services.Interfaces
         Task AddUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(int id);
+        Task<List<Car>> SearchCarsAsync(string search);
     }
 
 }

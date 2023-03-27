@@ -8,20 +8,20 @@ namespace AppClient.Components
 {
     public partial class CarListItem : UserControl
     {
-        private CarListItemViewModel viewModel;
-        public Car Car { get; set; }
+        /*private CarListItemViewModel viewModel;
+        public Car Car { get; set; }*/
 
         public CarListItem()
         {
             InitializeComponent();
         }
 
-        public CarListItemViewModel SetCar(Car car)
+        /*public CarListItemViewModel SetCar(Car car)
         {
             Car = car;
             viewModel = new CarListItemViewModel(car);
             DataContext = viewModel;
             return viewModel;
-        }
+        }*/
     }
 }

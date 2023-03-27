@@ -85,5 +85,20 @@ namespace AppClient.Services.Classes
                 await _dbContext.SaveChangesAsync();
             }
         }
+
+        public async Task<List<Car>> SearchCarsAsync(string search)
+        {
+            return await Task.Run(() =>
+            {
+                var allCars = GetAllCarsAsync().Result;
+                return allCars.Where(c =>
+                    c.Make.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+                    c.Model.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+                    c.Year.ToString().Contains(search, StringComparison.OrdinalIgnoreCase) ||
+                    c.Price.ToString().Contains(search, StringComparison.OrdinalIgnoreCase)
+                ).ToList();
+            });
+        }
+
     }
 }
