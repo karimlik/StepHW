@@ -26,7 +26,7 @@ namespace AppClient.ViewModels
         {
             _userService = new UserService();
             LoginCommand = new RelayCommand(Login, CanLogin);
-            RegisterCommand = new RelayCommand(Register, CanRegister);
+            RegisterCommand = new RelayCommand(Register);
         }
 
         private string _name;
@@ -93,7 +93,7 @@ namespace AppClient.ViewModels
 
         private bool CanRegister()
         {
-            return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password);
+            return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password) && (Password == PasswordConfirm);
         }
 
         public RelayCommand LoginCommand { get; }

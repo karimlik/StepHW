@@ -69,6 +69,24 @@ namespace E_Commerce.Migrations
                     b.ToTable("Cars");
                 });
 
+            modelBuilder.Entity("E_Commerce.Data.Models.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarsId");
+
+                    b.ToTable("CartItem");
+                });
+
             modelBuilder.Entity("E_Commerce.Data.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -136,6 +154,22 @@ namespace E_Commerce.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("E_Commerce.Data.Models.CartItem", b =>
+                {
+                    b.HasOne("E_Commerce.Data.Models.Car", "Cars")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CarsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cars");
+                });
+
+            modelBuilder.Entity("E_Commerce.Data.Models.Car", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("E_Commerce.Data.Models.User", b =>

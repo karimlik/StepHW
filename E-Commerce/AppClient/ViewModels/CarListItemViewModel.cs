@@ -1,10 +1,13 @@
-﻿using E_Commerce.Data.Models;
+﻿using AppClient.Services.Interfaces;
+using E_Commerce.Data.Models;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using System.Windows.Input;
 
 namespace AppClient.ViewModels
 {
     public class CarListItemViewModel
     {
-
         public Car Car { get; set; }
 
         public string Make => Car.Make;
@@ -18,5 +21,7 @@ namespace AppClient.ViewModels
         {
             Car = car;
         }
+
+
     }
 }

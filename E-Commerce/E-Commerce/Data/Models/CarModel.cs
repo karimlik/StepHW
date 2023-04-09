@@ -17,6 +17,6 @@ namespace E_Commerce.Data.Models
         public decimal Price { get; set; }
         public string imgUrl { get; set; } = string.Empty;
         public User User { get; set; } = null!;
-
+        public ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
     }
 }

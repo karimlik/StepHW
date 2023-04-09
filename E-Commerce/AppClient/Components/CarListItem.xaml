@@ -6,11 +6,12 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModels="clr-namespace:AppClient.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="320" d:DesignWidth="300">
 
     <Border Margin="10" Background="{DynamicResource MaterialDesignPaper}">
         <Grid Margin="10">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -30,7 +31,8 @@
                 <TextBlock Text="{Binding Mileage}" VerticalAlignment="Center" FontSize="12"/>
             </StackPanel>
 
-            <TextBlock Grid.Row="4" Text="{Binding Price, StringFormat='Price: ${0:#,###0}'}" FontWeight="Bold" Margin="10" FontSize="14"/>
+            <TextBlock Grid.Row="4" x:Name="Price" Text="{Binding Price, StringFormat='Price: ${0:#,###0}'}" FontWeight="Bold" Margin="10" FontSize="14"/>
+            <Button Content="Add to Cart" Grid.Row="5" Background="Azure" Click="onAddClicked" Margin="10,0,10, 0"></Button>
         </Grid>
     </Border>
 </UserControl>

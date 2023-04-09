@@ -15,6 +15,8 @@ namespace E_Commerce.Data
         public virtual DbSet<Car> Cars { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
+        public virtual DbSet<CartItem> CartItem { get; set; } = null!;
+
         public DataDbContext()
         {
         }
@@ -93,6 +95,16 @@ namespace E_Commerce.Data
 
                 entity.Property(x => x.CreatedAt)
                 .HasDefaultValueSql("getutcdate()");
+
+            });
+
+            modelBuilder.Entity<CartItem>(entity =>
+            {
+                entity.HasKey(c => c.Id);
+
+                entity.HasOne(c => c.Cars)
+                    .WithMany(x => x.CartItems)
+                    .IsRequired();
 
             });
         }

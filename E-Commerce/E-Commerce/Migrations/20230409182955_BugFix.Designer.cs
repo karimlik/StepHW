@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Migrations
 {
     [DbContext(typeof(DataDbContext))]
-    [Migration("20230322101917_Initial")]
-    partial class Initial
+    [Migration("20230409182955_BugFix")]
+    partial class BugFix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,17 +53,6 @@ namespace E_Commerce.Migrations
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("Car Price");
 
-                    b.Property<string>("SellerName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("Seller Name");
-
-                    b.Property<string>("SellerPhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Seller Phone");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -81,6 +70,24 @@ namespace E_Commerce.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("E_Commerce.Data.Models.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarsId");
+
+                    b.ToTable("CartItem");
                 });
 
             modelBuilder.Entity("E_Commerce.Data.Models.User", b =>
@@ -150,6 +157,22 @@ namespace E_Commerce.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("E_Commerce.Data.Models.CartItem", b =>
+                {
+                    b.HasOne("E_Commerce.Data.Models.Car", "Cars")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CarsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cars");
+                });
+
+            modelBuilder.Entity("E_Commerce.Data.Models.Car", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("E_Commerce.Data.Models.User", b =>

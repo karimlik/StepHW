@@ -12,7 +12,7 @@ namespace E_Commerce.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -29,7 +29,7 @@ namespace E_Commerce.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -44,17 +44,34 @@ namespace E_Commerce.Migrations
                     CarMileage = table.Column<int>(name: "Car Mileage", type: "int", nullable: false),
                     CarPrice = table.Column<decimal>(name: "Car Price", type: "decimal(18,2)", nullable: false),
                     ImgUrl = table.Column<string>(name: "Img Url", type: "nvarchar(max)", nullable: false),
-                    SellerName = table.Column<string>(name: "Seller Name", type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    SellerPhone = table.Column<string>(name: "Seller Phone", type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cars", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cars_Users_UserId",
+                        name: "FK_Cars_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CartItem",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CarsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CartItem_Cars_CarsId",
+                        column: x => x.CarsId,
+                        principalTable: "Cars",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -63,16 +80,24 @@ namespace E_Commerce.Migrations
                 name: "IX_Cars_UserId",
                 table: "Cars",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItem_CarsId",
+                table: "CartItem",
+                column: "CarsId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "CartItem");
+
+            migrationBuilder.DropTable(
                 name: "Cars");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
         }
     }
 }

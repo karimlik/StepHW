@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AppClient.Services.Classes;
+using AppClient.Services.Interfaces;
+using CommonServiceLocator;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +16,6 @@ namespace AppClient
     /// </summary>
     public partial class App : Application
     {
+
     }
 }
