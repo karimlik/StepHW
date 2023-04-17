@@ -218,8 +218,9 @@ nav ul li a {
   cursor: pointer;
   line-height: 17px;
   z-index: 1;
-  
+
 }
+
 .fi-dropdown-arrow {
   position: absolute;
   right: 10px;
@@ -228,4 +229,14 @@ nav ul li a {
   height: 15px;
   background-image: url(/img/chevron-down-solid.svg);
   background-repeat: no-repeat;
+}
+
+.fi-not-active {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.fi-label {
+  color: #8d94ad;
+  font-size: 15px;
 }
