@@ -23,10 +23,11 @@ main .main-div {
 }
 
 .imgbox {
-    background-image: url(https://images.unsplash.com/photo-1681846291878-1103198eb2d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80);
+    background: url(https://images.unsplash.com/photo-1681846291878-1103198eb2d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80);
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     background-position: center center;
+    transition: all 0.4s;
 }
 
 .content {
@@ -41,9 +42,8 @@ main .main-div {
 }
 
 .content:hover .imgbox {
-    background-size: 120%;
+    transform: scale(1.2);
     filter: brightness(0.5);
-    transition: 0.4s ease-in;
 }
 
 .content:hover .textbox,
