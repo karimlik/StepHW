@@ -436,11 +436,6 @@ svg {
 }
 
 @media (min-width: 576px) {
-    .col-sm-12 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-
     .col-sm-6 {
         flex: 0 0 50%;
         max-width: 50%;
@@ -449,14 +444,6 @@ svg {
     .col-sm-8 {
         flex: 0 0 66.66666667%;
         max-width: 66.66666667%;
-    }
-
-    .mt-sm-0, .my-sm-0 {
-        margin-top: 0!important;
-    }
-
-    .footer-links-right, .footer-list-iconic {
-        text-align: right;
     }
 }
 
@@ -635,8 +622,4 @@ input {
     font-size: .875rem;
     line-height: 1.3125rem;
     background: #dee2e6;
-}
-
-.mt-4, .my-4 {
-    margin-top: 1.5rem!important;
 }
