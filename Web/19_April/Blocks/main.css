@@ -27,7 +27,9 @@ main .main-div {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    position: relative;
     transition: all 0.4s;
+    overflow: hidden;
 }
 
 .content {
@@ -41,7 +43,18 @@ main .main-div {
     transition: 0.4s ease-in;
 }
 
-.content:hover .imgbox {
+.content .imgbox::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    transition: inherit;
+}
+
+.content:hover .imgbox::before {
     transform: scale(1.2);
     filter: brightness(0.5);
 }
