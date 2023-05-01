@@ -30,6 +30,8 @@ html, body {
 .main-div {
     background-color: rebeccapurple;
     height: 100%;
+    margin-left: 22vw;
+    margin-top: 2vh;
     padding-bottom: 2.5vw;
 }
 
@@ -38,7 +40,18 @@ html, body {
     width: 20vw;
     height: 40vw;
     background-color: blue;
+    margin-top: 2vh;
 }
+
+.aside-2 {
+    float: left;
+    width: 20vw;
+    margin-top: 45vw;
+    margin-left: -20vw;
+    height: 40vw;
+    background-color: blue;
+}
+
 
 .s-1, .s-2 {
     height: 40vh;
