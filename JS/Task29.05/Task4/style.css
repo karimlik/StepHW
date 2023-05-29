@@ -1,0 +1,52 @@
+.traffic-light {
+    width: 400px;
+    height: 200px;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .light {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
+  
+  .red {
+    background-color: red;
+  }
+  
+  .yellow {
+    background-color: yellow;
+  }
+  
+  .green {
+    background-color: green;
+  }
+
+  .inactive {
+    background-color: grey;
+  }
+  
+  .red .active {
+    background-color: red !important;
+  }
+  
+  .yellow .active {
+    background-color: yellow !important;
+  }
+  
+  .green .active {
+    background-color: green !important;
+  }
+
+  button {
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+  

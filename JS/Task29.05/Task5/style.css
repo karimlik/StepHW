@@ -1,0 +1,13 @@
+.book-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.book-list li {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.book-list li.highlight {
+  background-color: yellow;
+}
