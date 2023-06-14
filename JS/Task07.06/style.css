@@ -1,0 +1,28 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .search-bar {
+    margin-bottom: 20px;
+  }
+  
+  #weatherData {
+    text-align: left;
+  }
+  
+  #weatherData .city-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  #weatherData .weather-info {
+    margin-top: 10px;
+  }
+  
+  #weatherData .weather-info .item {
+    margin-bottom: 5px;
+  }
+  
