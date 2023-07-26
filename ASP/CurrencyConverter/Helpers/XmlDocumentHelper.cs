@@ -17,7 +17,7 @@ namespace CurrencyConverter.Helpers
             XmlNodeList currencyNodes = xmlDoc.SelectNodes("//ValType/Valute");
             foreach (XmlNode currencyNode in currencyNodes)
             {
-                string code = currencyNode.SelectSingleNode("Valute")?.InnerText;
+                string code = currencyNode.Attributes["Code"]?.Value;
                 decimal rate = decimal.Parse(currencyNode.SelectSingleNode("Value")?.InnerText ?? "0");
 
                 Currency currency = new Currency
